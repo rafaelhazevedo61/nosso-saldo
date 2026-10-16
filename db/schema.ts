@@ -1,0 +1,8 @@
+import { sqliteTable, text, integer } from 'drizzle-orm/sqlite-core';
+export const transactions = sqliteTable('transactions', {id:text('id').primaryKey(),description:text('description').notNull(),amount:integer('amount').notNull(),type:text('type').notNull(),category:text('category').notNull(),person:text('person').notNull(),date:text('date').notNull(),walletId:text('wallet_id').notNull().default('main')});
+
+export const wallets=sqliteTable('wallets',{id:text('id').primaryKey(),name:text('name').notNull(),initialBalance:integer('initial_balance').notNull().default(0),archived:integer('archived').notNull().default(0)});
+export const goals=sqliteTable('goals',{id:text('id').primaryKey(),name:text('name').notNull(),target:integer('target').notNull(),saved:integer('saved').notNull().default(0),deadline:text('deadline')});
+export const creditCards=sqliteTable('credit_cards',{id:text('id').primaryKey(),name:text('name').notNull(),limit:integer('credit_limit').notNull(),closingDay:integer('closing_day').notNull()});
+export const creditCharges=sqliteTable('credit_charges',{id:text('id').primaryKey(),purchaseId:text('purchase_id').notNull(),cardId:text('card_id').notNull(),description:text('description').notNull(),amount:integer('amount').notNull(),date:text('date').notNull(),invoice:text('invoice').notNull(),installment:integer('installment').notNull(),installments:integer('installments').notNull(),person:text('person').notNull()});
+export const creditPayments=sqliteTable('credit_payments',{id:text('id').primaryKey(),cardId:text('card_id').notNull(),invoice:text('invoice').notNull()});

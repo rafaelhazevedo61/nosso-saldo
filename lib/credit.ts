@@ -1,0 +1,3 @@
+export function monthOffset(month:string,offset:number){const [y,m]=month.split('-').map(Number);const d=new Date(Date.UTC(y,m-1+offset,1));return d.toISOString().slice(0,7)}
+export function firstInvoice(date:string,closingDay:number){const [y,m,day]=date.split('-').map(Number);const closing=Math.min(closingDay,new Date(Date.UTC(y,m,0)).getUTCDate());return monthOffset(date.slice(0,7),day<=closing?0:1)}
+export function splitPurchase(amount:number,installments:number,firstMonth:string){const base=Math.floor(amount/installments),extra=amount%installments;return Array.from({length:installments},(_,i)=>({amount:base+(i<extra?1:0),invoice:monthOffset(firstMonth,i),installment:i+1,installments}))}

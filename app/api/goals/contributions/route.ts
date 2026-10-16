@@ -1,0 +1,4 @@
+import {getChatGPTUser} from '../../../chatgpt-auth';
+import {env} from 'cloudflare:workers';
+import {z} from 'zod';
+export async function POST(req:Request){if(!await getChatGPTUser())return Response.json({error:'Entre na sua conta.'},{status:401});if(req.headers.get('origin')!==new URL(req.url).origin)return Response.json({error:'Origem inválida'},{status:403});const p=z.object({id:z.string().uuid(),amount:z.number().int().min(-10000000000).max(10000000000).refine(n=>n!==0)}).safeParse(await req.json().catch(()=>null));if(!p.success)return Response.json({error:'Informe um valor válido.'},{status:400});const {id,amount}=p.data;const r=await env.DB!.prepare('UPDATE goals SET saved=saved+? WHERE id=? AND saved+? BETWEEN 0 AND 10000000000').bind(amount,id,amount).run();if(!r.meta.changes)return Response.json({error:'Meta não encontrada ou valor fora do limite. A retirada não pode superar o valor guardado.'},{status:409});return Response.json({ok:true})}

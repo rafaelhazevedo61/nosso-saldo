@@ -1,0 +1,41 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1791825179127,
+      "tag": "0000_exotic_zuras",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1791912052392,
+      "tag": "0001_brainy_korvac",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1791913199456,
+      "tag": "0002_loud_sleeper",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "6",
+      "when": 1791915722534,
+      "tag": "0003_grey_silver_centurion",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "6",
+      "when": 1791918631588,
+      "tag": "0004_breezy_wind_dancer",
+      "breakpoints": true
+    }
+  ]
+}
